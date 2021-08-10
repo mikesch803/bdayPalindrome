@@ -1,14 +1,15 @@
 import "./styles.css";
 import { useState } from "react";
 import timer from "./images/timer.gif";
+import { FaGithub, FaLinkedinIn, FaTwitter } from "react-icons/fa";
+
 export default function App() {
   const [inputDate, setInputDate] = useState();
   const [output, setOutput] = useState();
-
   const daysInMon = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
   function clickHandler() {
-    if (inputDate !== "") {
+    if (inputDate) {
       setOutput(<img alt="" src={timer} />);
       setTimeout(() => {
         outputHandler();
@@ -32,7 +33,7 @@ export default function App() {
         setOutput("yay! your birthday is palindrome");
       } else {
         setOutput(
-          "your birthday is not palindrome. You are missed by " +
+          "Your birthday is not palindrome. You are missed by " +
             missedDays +
             " and next palindrome date is " +
             nextDate.day +
@@ -169,14 +170,38 @@ export default function App() {
 
   return (
     <div className="App">
-      <h1>Birthday Palindrome</h1>
-      <h2>This app will Check whether your Birthday is Palindrome or not!</h2>
-      <div className="form">
-        <label>Dob</label>
-        <input type="date" onChange={(e) => setInputDate(e.target.value)} />
-        <button onClick={clickHandler}>Check</button>
-        <h3>{output}</h3>
+      <div className="content">
+        <h1 className="title">Birthday Palindrome</h1>
+        <h2>This app will Check whether your Birthday is Palindrome or not!</h2>
+        <div className="form">
+          <label>Please enter your Birthdate!</label>
+          <input type="date" onChange={(e) => setInputDate(e.target.value)} />
+          <button onClick={clickHandler}>Check</button>
+        </div>
+        {inputDate && <h3 className="output">{output}</h3>}
       </div>
+      <footer>
+        <h1>connect with me</h1>
+        <div className="social-links ">
+          <ul>
+            <li className="hvr-buzz">
+              <a href="https://twitter.com/mikesch_34">
+                <FaTwitter color="white" size="2rem" />
+              </a>
+            </li>
+            <li className="hvr-buzz">
+              <a href="https://www.linkedin.com/in/mahendra-chauhan-b111561b1/">
+                <FaLinkedinIn color="white" size="2rem" />
+              </a>
+            </li>
+            <li className="hvr-buzz">
+              <a href="https://github.com/mikesch803">
+                <FaGithub color="white" size="2rem" />
+              </a>
+            </li>
+          </ul>
+        </div>
+      </footer>
       {/* <p>Made with ❤️ by Mahendra😄</p> */}
     </div>
   );
